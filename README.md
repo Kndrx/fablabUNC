@@ -65,3 +65,10 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
 # fablabUNC
+
+
+
+        <div class="form-group">
+            {!! Form::Label('item', 'Item:') !!}
+            {!! Form::select('item_id', $items, $selectedID, ['class' => 'form-control']) !!}
+        </div>

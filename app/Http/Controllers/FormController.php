@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class LoginController extends Controller
+class FormController extends Controller
 {
     /**
      * Instance a new LoginController instance

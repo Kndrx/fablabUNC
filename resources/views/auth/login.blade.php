@@ -1,4 +1,4 @@
-@extends('welcome')
+@extends('layouts.app')
 
 @section('content')
 
@@ -8,10 +8,10 @@
         <div class="card">
             <div class="card-header">Login</div>
             <div class="card-body">
-                <form action="{{ route('authenticate') }}" method="post">
+                <form action="{{ route('authenticate') }}" method="get">
                     @csrf
                     <div class="mb-3 row">
-                        <label for="username" class="col-md-4 col-form-label text-md-end text-start">Nom d'utilisateur</label>
+                        <label for="username" class="col-md-4 col-form-label text-md-end text-start"> Nom d'utilisateur</label>
                         <div class="col-md-6">
                           <input type="username" class="form-control @error('username') is-invalid @enderror" id="username" name="username" value="{{ old('username') }}">
                             @if ($errors->has('username'))

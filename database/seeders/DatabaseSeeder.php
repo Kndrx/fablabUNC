@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
             CadreSeeder::class,
             ServicesSeeder::class,
             FilieresSeeder::class,
+            UsersSeeder::class,
         ]);
      }
 }
