@@ -20,23 +20,23 @@ class PersonsSeeder extends Seeder
             DB::table('persons')->insert([
                 [
                     'id' => 1,
-                    'type' => 'étudiant'
+                    'type' => 'Étudiant'
                 ],
                 [
                     'id' => 2,
-                    'type' => 'enseignant'
+                    'type' => 'Enseignant'
                 ],
                 [
                     'id' => 3,
-                    'type' => 'doctorant'
+                    'type' => 'Doctorant'
                 ],
                 [
                     'id' => 4,
-                    'type' => 'membre du personnel'
+                    'type' => 'Membre du personnel'
                 ],
                 [
                     'id' => 5,
-                    'type' => 'autre'
+                    'type' => 'Autre'
                 ],
             ]);
     }

@@ -10,29 +10,27 @@
 
                     <div class="container text-center">
                         <div class="row align-items-center mt-2">
-                            <div class="col-lg">
-                                <label for="exampleDataList" class="form-label">Je suis</label>
-                                <select class="form-select" aria-label="Default select example">
-                                    <option value="0" selected disabled>Selectionnez</option>
-                                    <option value="1">étudiant</option>
-                                    <option value="2">Membre du personnel</option>
-                                    <option value="3">Enseignant</option>
-                                    <option value="4">Doctorant</option>
-                                    <option value="5">Autre</option>
-
+                            <div class="col">
+                                <label for="id" class="col-form-label">Je suis</label>
+                                <select class="form-select" aria-label="Default select example" id="id" name="id">
+                                    <option disabled selected hidden>Sélectionnez...</option>
+                                    @foreach($persons as $person)
+                                    <option value="{{ $person->id }}">
+                                        {{ $person->type }}
+                                    </option>
+                                    @endforeach
                                 </select>
                             </div>
-                            <div class="col-lg">
-                                <label for="exampleDataList" class="form-label">Filière/Service</label>
-                                <input class="form-control" list="datalistOptions" id="exampleDataList"
-                                    placeholder="Filière/Service">
-                                <datalist id="datalistOptions">
-                                    <option value="San Francisco">
-                                    <option value="New York">
-                                    <option value="Seattle">
-                                    <option value="Los Angeles">
-                                    <option value="Chicago">
-                                </datalist>
+                            <div class="col">
+                                <label for="id" class="col-form-label">Service</label>
+                                <select class="form-select" aria-label="Default select example" id="id" name="id">
+                                    <option disabled selected hidden>Sélectionnez...</option>
+                                    @foreach($services as $service)
+                                    <option value="{{ $service->id }}">
+                                        {{ $service->service }}
+                                    </option>
+                                    @endforeach
+                                </select>
                             </div>
                         </div>
                     </div>
@@ -40,24 +38,25 @@
                     <div class="container text-center">
                         <div class="row align-items-center mt-5">
                             <div class="col">
-                                <label for="exampleDataList" class="form-label">Raison de la venue</label>
-                                <select class="form-select">
-                                    <option value="0" selected disabled>Selectionnez</option>
-                                    <option value="1">TP</option>
-                                    <option value="2">Cours</option>
-                                    <option value="3">Perso</option>
-                                    <option value="4">Autre</option>
-
+                                <label for="id" class="col-form-label">Raison de la venue</label>
+                                <select class="form-select" aria-label="Default select example" id="id" name="id">
+                                    <option disabled selected hidden>Sélectionnez...</option>
+                                    @foreach($cadre as $raison)
+                                    <option value="{{ $raison->id }}">
+                                        {{ $raison->raison }}
+                                    </option>
+                                    @endforeach
                                 </select>
                             </div>
                             <div class="col">
-                                <label for="exampleDataList" class="form-label">Pôle utilisé</label>
-                                <select class="form-select">
-                                    <option value="0" selected disabled>Selectionnez</option>
-                                    <option value="1">Textile(Brodeuse,couture...)</option>
-                                    <option value="2">Electronique</option>
-                                    <option value="3">Fabrication(3D)</option>
-
+                                <label for="id" class="col-form-label">Pôle utilisé</label>
+                                <select class="form-select" aria-label="Default select example" id="id" name="id">
+                                    <option disabled selected hidden>Sélectionnez...</option>
+                                    @foreach($pole as $pole)
+                                    <option value="{{ $pole->id }}">
+                                        {{ $pole->pole }}
+                                    </option>
+                                    @endforeach
                                 </select>
                             </div>
                         </div>

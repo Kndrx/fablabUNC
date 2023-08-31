@@ -9,9 +9,7 @@ use App\Models\Service;
 use App\Models\Cadre;
 use App\Models\Poleused;
 
-
-
-class FormController extends Controller
+class DashboardController extends Controller
 {
     /**
      * Show a list of all type.
@@ -23,6 +21,6 @@ class FormController extends Controller
         $cadre = Cadre::all();
         $pole = Poleused::all();
  
-        return view('welcome', compact('services','persons','cadre','pole'));
+        return view('auth.dashboard', compact('services','persons','cadre','pole'));
     }
 }

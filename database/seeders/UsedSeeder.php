@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Hash;
 
-class UseSeeder extends Seeder
+class UsedSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -17,7 +17,7 @@ class UseSeeder extends Seeder
      */
     public function run()
     {
-            DB::table('use')->insert([
+            DB::table('used')->insert([
                 [
                     'id' => 1,
                     'pole' => 'Textile'

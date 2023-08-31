@@ -6,12 +6,13 @@ use App\Models\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Hash;
 
-class LoginController extends Controller
+class LoginRegisterController extends Controller
 {
     /**
-     * Instance a new LoginController instance
+     * Instance a new LoginRegisterController instance
      */
 
     public function __construct(){
@@ -70,8 +71,7 @@ class LoginController extends Controller
     public function logout(Request $request)
     {
         Auth::logout();
-        $request->session()->invalidate();
-        $request->session()->regenerateToken();
-        return view('welcome')->withSucess('Déconnexion réussie!');
+        Session::flush();
+        return redirect('/')->withSuccess('Déonnexion réussie');
     }
 }

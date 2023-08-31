@@ -1,6 +1,10 @@
 <?php
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginRegisterController;
+use App\Http\Controllers\FormController;
+use App\Http\Controllers\Auth\DashboardController;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -13,15 +17,12 @@ use App\Http\Controllers\Auth\LoginRegisterController;
 |
 */
 
-Route::get('/', function () {
-    return view('layouts.app');
-});
+Route::get('/', [FormController::class, 'index'])->name('form-index');
 
 Route::controller(LoginRegisterController::class)->group(function() {
-    Route::get('/register', 'register')->name('register');
     Route::post('/store', 'store')->name('store');
     Route::get('/login', 'login')->name('login');
     Route::post('/authenticate', 'authenticate')->name('authenticate');
-    Route::get('/dashboard', 'dashboard')->name('dashboard');
+    Route::get('/dashboard',  [DashboardController::class, 'index'])->name('dashboard-index');
     Route::post('/logout', 'logout')->name('logout');
 });
