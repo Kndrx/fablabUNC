@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
             ServicesSeeder::class,
             FilieresSeeder::class,
             UsersSeeder::class,
+            ListingPersonsSeeder::class,
         ]);
      }
 }
