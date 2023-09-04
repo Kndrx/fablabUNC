@@ -17,12 +17,17 @@ use App\Http\Controllers\Auth\DashboardController;
 |
 */
 
+// get form and show values in dropdown from database
 Route::get('/', [FormController::class, 'index'])->name('form-index');
 
+// post form to database
+Route::post('postform', [FormController::class, 'post'])->name('post');
+
 Route::controller(LoginRegisterController::class)->group(function() {
+    Route::get('/register', 'register')->name('register');
     Route::post('/store', 'store')->name('store');
     Route::get('/login', 'login')->name('login');
     Route::post('/authenticate', 'authenticate')->name('authenticate');
-    Route::get('/dashboard',  [DashboardController::class, 'index'])->name('dashboard-index');
+    Route::get('/dashboard', 'dashboard')->name('dashboard');
     Route::post('/logout', 'logout')->name('logout');
 });

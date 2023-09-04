@@ -13,7 +13,7 @@
                     </div>
                 @else
                     <div class="alert alert-success">
-                        Connecté!
+                        Bonjour admin!
                     </div>       
                 @endif                
             </div>

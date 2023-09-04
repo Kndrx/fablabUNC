@@ -8,6 +8,11 @@ use App\Models\Person;
 use App\Models\Service;
 use App\Models\Cadre;
 use App\Models\Poleused;
+use App\Models\Trec;
+use App\Models\Filieres;
+
+use App\Models\ListingPerson;
+
 
 
 
@@ -22,7 +27,29 @@ class FormController extends Controller
         $services = Service::all();
         $cadre = Cadre::all();
         $pole = Poleused::all();
+        $trec = Trec::all();
+        $filieres = Filieres::all();
  
-        return view('welcome', compact('services','persons','cadre','pole'));
+        return view('welcome', compact('services','persons','cadre','pole','filieres','trec'));
+    }
+
+    public function post(Request $request)
+    {
+
+        $post = new ListingPerson;
+        $post->created_at = now();
+        $post->updated_at = now();
+        $post->type = $request->type_id;
+        $post->service = $request->service_id;
+        $post->filieres = $request->filiere_id;
+        $post->TREC = $request->trec_id;
+        $post->raison = $request->raison_id;
+        $post->pole = $request->pole_id;
+
+        
+        $post->save();
+
+        return redirect('/')->with('status', 'Enregistrement effectué. Merci');
+
     }
 }

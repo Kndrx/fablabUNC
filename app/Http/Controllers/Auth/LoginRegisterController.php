@@ -28,9 +28,6 @@ class LoginRegisterController extends Controller
         return view('auth.login');
     }
 
-    /**
-    * Authenticate the admin
-    */
     public function authenticate(Request $request)
     {
         $credentials = $request->validate([
@@ -42,13 +39,14 @@ class LoginRegisterController extends Controller
         {
             $request->session()->regenerate();
             return redirect()->route('dashboard')
-                ->withSuccess('Connexion réussie');
+                ->withSuccess('Bonjour administrateur.');
         }
 
         return back()->withErrors([
             'username' => 'Utilisateur inconnu.',
         ])->onlyInput('username');
-    }
+
+    } 
 
     /**
      * Return the connected admin to dashboard

@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Hash;
 
-class UsersSeeder extends Seeder
+class TrecSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -17,13 +17,14 @@ class UsersSeeder extends Seeder
      */
     public function run()
     {
-            DB::table('users')->insert([
+            DB::table('trec')->insert([
                 [
                     'id' => 1,
-                    'username' => 'admin',
-                    'password' => Hash::make('test'),
-                    'created_at' => now(),
-                    'updated_at' => now()
+                    'trec' => 'TREC 5'
+                ],
+                [
+                    'id' => 2,
+                    'trec' => 'TREC 7'
                 ],
             ]);
     }
