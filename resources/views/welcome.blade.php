@@ -35,14 +35,34 @@
                         </div>
                     </div>
 
+                    <div class="container">
+                        <div class="row">
+                          <h2>Bootstrap-select example</h2>
+                          <p>This uses <a href="https://silviomoreto.github.io/bootstrap-select/">https://silviomoreto.github.io/bootstrap-select/</a></p>
+                          <hr />
+                        </div>
+                    
+                        <div class="row-fluid">
+                          <select class="selectpicker" data-show-subtext="true" data-live-search="true">
+                            <option data-subtext="Rep California">Tom Foolery</option>
+                            <option data-subtext="Sen California">Bill Gordon</option>
+                            <option data-subtext="Sen Massacusetts">Elizabeth Warren</option>
+                            <option data-subtext="Rep Alabama">Mario Flores</option>
+                            <option data-subtext="Rep Alaska">Don Young</option>
+                            <option data-subtext="Rep California" disabled="disabled">Marvin Martinez</option>
+                          </select>
+                          <span class="help-inline">With <code>data-show-subtext="true" data-live-search="true"</code>. Try searching for california</span>
+                        </div>
+                      </div>
+                      
                     <div class="container text-center">
                         <div class="row align-items-center mt-5">
                             <div class="col">
                                 <label for="id" class="col-form-label">filière</label>
-                                <select class="form-select" aria-label="Default select example" id="filiere_id" name="filiere_id">
+                                    <select data-show-subtext="true" data-live-search="true" class="form-select" aria-label="Default select example" data-live-search="true" id="filiere_id" name="filiere_id">
                                     <option disabled selected hidden>Sélectionnez...</option>
                                     @foreach($filieres as $filiere)
-                                    <option value="{{ $filiere->filiere }}">
+                                    <option value="{{ $filiere->id }}">
                                         {{ $filiere->filiere }}
                                     </option>
                                     @endforeach

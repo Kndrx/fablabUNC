@@ -41,7 +41,7 @@ class FormController extends Controller
         $post->updated_at = now();
         $post->type = $request->type_id;
         $post->service = $request->service_id;
-        $post->filieres = $request->filiere_id;
+        $post->filiere = $request->filiere_id;
         $post->TREC = $request->trec_id;
         $post->raison = $request->raison_id;
         $post->pole = $request->pole_id;
