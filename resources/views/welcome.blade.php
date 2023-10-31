@@ -1,5 +1,8 @@
 @extends('layouts.app')
 
+<script src="https://unpkg.com/@jarstone/dselect/dist/js/dselect.js"></script>
+<script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
@@ -10,9 +13,9 @@
                     @csrf
                     <div class="container text-center">
                         <div class="row align-items-center mt-2">
-                            <div class="col">
+                            <div class="col" id="Type_col">
                                 <label for="id" class="col-form-label">Je suis</label>
-                                <select class="form-select" aria-label="Default select example" id="type_id" name="type_id">
+                                <select class="form-select" aria-label="Default select example" id="type_id" name="type_id" required>
                                     <option disabled selected hidden>Sélectionnez...</option>
                                     @foreach($persons as $person)
                                     <option value="{{ $person->type }}">
@@ -21,64 +24,11 @@
                                     @endforeach
                                 </select>
                             </div>
-                            <div class="col">
-                                <label for="id" class="col-form-label">Service</label>
-                                <select class="form-select" aria-label="Default select example" id="service_id" name="service_id">
-                                    <option disabled selected hidden>Sélectionnez...</option>
-                                    @foreach($services as $service)
-                                    <option value="{{ $service->service }}">
-                                        {{ $service->service }}
-                                    </option>
-                                    @endforeach
-                                </select>
-                            </div>
                         </div>
                     </div>
 
-                    <div class="container">
-                        <div class="row">
-                          <h2>Bootstrap-select example</h2>
-                          <p>This uses <a href="https://silviomoreto.github.io/bootstrap-select/">https://silviomoreto.github.io/bootstrap-select/</a></p>
-                          <hr />
-                        </div>
-                    
-                        <div class="row-fluid">
-                          <select class="selectpicker" data-show-subtext="true" data-live-search="true">
-                            <option data-subtext="Rep California">Tom Foolery</option>
-                            <option data-subtext="Sen California">Bill Gordon</option>
-                            <option data-subtext="Sen Massacusetts">Elizabeth Warren</option>
-                            <option data-subtext="Rep Alabama">Mario Flores</option>
-                            <option data-subtext="Rep Alaska">Don Young</option>
-                            <option data-subtext="Rep California" disabled="disabled">Marvin Martinez</option>
-                          </select>
-                          <span class="help-inline">With <code>data-show-subtext="true" data-live-search="true"</code>. Try searching for california</span>
-                        </div>
-                      </div>
-                      
-                    <div class="container text-center">
+                    <div class="container text-center" id="Trec_col">
                         <div class="row align-items-center mt-5">
-                            <div class="col">
-                                <label for="id" class="col-form-label">filière</label>
-                                    <select data-show-subtext="true" data-live-search="true" class="form-select" aria-label="Default select example" data-live-search="true" id="filiere_id" name="filiere_id">
-                                    <option disabled selected hidden>Sélectionnez...</option>
-                                    @foreach($filieres as $filiere)
-                                    <option value="{{ $filiere->id }}">
-                                        {{ $filiere->filiere }}
-                                    </option>
-                                    @endforeach
-                                </select>
-                            </div>
-                            <div class="col">
-                                <label for="id" class="col-form-label">Trec</label>
-                                <select class="form-select" aria-label="Default select example" id="trec_id" name="trec_id">
-                                    <option disabled selected hidden>Sélectionnez...</option>
-                                    @foreach($trec as $trec)
-                                    <option value="{{ $trec->trec }}">
-                                        {{ $trec->trec }}
-                                    </option>
-                                    @endforeach
-                                </select>
-                            </div>
                         </div>
                     </div>
                     
@@ -86,7 +36,7 @@
                         <div class="row align-items-center mt-5">
                             <div class="col">
                                 <label for="id" class="col-form-label">Raison de la venue</label>
-                                <select class="form-select" aria-label="Default select example" id="raison_id" name="raison_id">
+                                <select class="form-select" aria-label="Default select example" id="raison_id" name="raison_id" required>
                                     <option disabled selected hidden>Sélectionnez...</option>
                                     @foreach($cadre as $raison)
                                     <option value="{{ $raison->raison }}">
@@ -97,7 +47,7 @@
                             </div>
                             <div class="col">
                                 <label for="id" class="col-form-label">Pôle utilisé</label>
-                                <select class="form-select" aria-label="Default select example" id="pole_id" name="pole_id">
+                                <select class="form-select" aria-label="Default select example" id="pole_id" name="pole_id" required>
                                     <option disabled selected hidden>Sélectionnez...</option>
                                     @foreach($pole as $pole)
                                     <option value="{{ $pole->pole }}">
@@ -126,4 +76,80 @@
       </div>
     </div>
 </div>
+
+<script>
+
+    const config = {
+        search: true, // Toggle search feature. Default: false
+    };
+
+    
+
+    $("#type_id").change(function(){
+        var selectedType = $(this).children("option:selected").text();
+
+        var membre = selectedType.includes('Membre du personnel');
+
+        if (membre == true){
+            if (!$('#service').length) {
+                $(`<div class="col" id="service">
+                        <label for="id" class="col-form-label">Service</label>
+                        <select data-dselect-search="true" class="form-select" aria-label="Default select example" id="service_id" name="service_id" required>
+                            <option disabled selected>Sélectionnez...</option>
+                                @foreach($services as $service)
+                                    <option value="{{ $service->service }}">
+                                        {{ $service->service }}
+                                    </option>
+                                @endforeach
+                        </select>
+                    </div>`).insertAfter('#Type_col');
+                    $('#filiere').remove();
+                dselect(document.querySelector('#service_id'), config);
+
+            }
+        } else {
+            if (!$('#filiere').length) {
+                $(`<div class="col" id="filiere">
+                        <label for="id" class="col-form-label">Filière</label>
+                            <select class="form-select filiere" aria-label="Default select example" id="filiere_id" name="filiere_id" required>
+                                <option disabled selected hidden>Sélectionnez...</option>
+                                    @foreach($filieres as $filiere)
+                                        <option value="{{ $filiere->id }}">
+                                            {{ $filiere->filiere }}
+                                        </option>
+                                    @endforeach
+                            </select>
+                    </div>`).insertAfter('#Type_col');
+            }
+            
+            $("#filiere_id").change(function(){
+                var selectedFiliere = $(this).children("option:selected").text();
+
+                var result = selectedFiliere.includes('Licence');
+
+                if (result == true){
+                    if (!$('#trec').length) {
+                        $('#Trec_col').append(`<div class="col" id="trec">
+                            <label for="id" class="col-form-label">Trec</label>
+                            <select class="form-select" aria-label="Default select example" id="trec_id" name="trec_id" required>
+                                    <option disabled selected hidden>Sélectionnez...</option>
+                                        @foreach($trec as $trec)
+                                            <option value="{{ $trec->trec }}">
+                                                    {{ $trec->trec }}
+                                            </option>
+                                        @endforeach
+                            </select> 
+                        </div>`);
+                    }
+                } else {
+                    $('#trec').remove();
+                }
+            });
+            $('#service').remove();
+            
+            dselect(document.querySelector('#filiere_id'), config);
+        }
+
+    });
+</script>
 @endsection

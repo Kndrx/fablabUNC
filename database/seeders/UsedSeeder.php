@@ -30,6 +30,14 @@ class UsedSeeder extends Seeder
                     'id' => 3,
                     'pole' => 'Electronique'
                 ],
+                [
+                    'id' => 4,
+                    'pole' => 'Logiciels'
+                ],
+                [
+                    'id' => 5,
+                    'pole' => 'Visite/Divers'
+                ],
             ]);
     }
 }
